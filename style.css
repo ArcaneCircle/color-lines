@@ -1,143 +1,247 @@
-body{
-	margin:0;
-	padding:25px;
-	font-family:Arial;
-	font-size:14px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial;
+  font-size: 14px;
 }
 
 /* Forecast */
-.forecast{
-	width:120px;
-	height:40px;
-	margin:0 auto;
+.forecast {
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
 }
 
-.forecast div{
-	position:relative;
-	width:40px;
-	height:40px;
-	float:left;
+.forecast div {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  float: left;
 }
 
-.forecast div:before{
-	content:"";
-	position:absolute;
-	top:5px;
-	left:5px;
-	width:30px;
-	height:30px;
-	border-radius:100px;
+.forecast div:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
 }
 
+.grid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(9, [col] 10vw);
+  grid-template-rows: repeat(9, [row] 10vw);
+  width: 90vw;
+  justify-content: center;
+  align-content: center;
+  /* margin: 0 auto; */
+  position: relative;
 
-/* Grid */
-.grid{
-	margin:25px auto;
-	position:relative;
-	width:450px;
-	height:450px;
+  max-width: 450px;
+  max-height: 450px;
 }
 
-.grid div{
-	position:absolute;
-	width:50px;
-	height:50px;
-	box-sizing:border-box;
-	background:#ddd;
-	border:2px outset #ccc;
+.grid div {
+  position: absolute;
+  width: 10vw;
+  height: 10vw;
+  box-sizing: border-box;
+  background: #ddd;
+  border: 2px outset #ccc;
 }
 
-.grid div:before{
-	content:"";
-	position:absolute;
-	top:5px;
-	left:5px;
-	width:36px;
-	height:36px;
-	box-sizing:border-box;
-	border-radius:100px;
+.grid div:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  box-sizing: border-box;
+  border-radius: 100%;
+  width: 8vw;
+  height: 8vw;
 }
 
-.grid .ball{cursor:pointer;}
-.empty:before{background:transparent;}
-
+.grid .ball {
+  cursor: pointer;
+}
+.empty:before {
+  background: transparent;
+}
 
 /* Ball colors */
-.red:before{
-	background: rgb(255,0,0);
-	background: radial-gradient(ellipse at center, rgb(255,77,77) 0%, rgb(255,0,0) 100%);
+.red:before {
+  background: rgb(255, 0, 0);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(255, 77, 77) 0%,
+    rgb(255, 0, 0) 100%
+  );
 }
 
-.blue:before{
-	background: rgb(0,0,255);
-	background: radial-gradient(ellipse at center, rgb(77,77,255) 0%, rgb(0,0,255) 100%);
+.blue:before {
+  background: rgb(0, 0, 255);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(77, 77, 255) 0%,
+    rgb(0, 0, 255) 100%
+  );
 }
 
-.green:before{
-	background: rgb(0,128,0);
-	background: radial-gradient(ellipse at center, rgb(77,166,77) 0%, rgb(0,128,0) 100%);
+.green:before {
+  background: rgb(0, 128, 0);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(77, 166, 77) 0%,
+    rgb(0, 128, 0) 100%
+  );
 }
 
-.yellow:before{
-	background: rgb(255,255,0);
-	background: radial-gradient(ellipse at center, rgb(255,255,77) 0%, rgb(255,255,0) 100%);
+.yellow:before {
+  background: rgb(255, 255, 0);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(255, 255, 77) 0%,
+    rgb(255, 255, 0) 100%
+  );
 }
 
-.brown:before{
-	background: rgb(165,42,42);
-	background: radial-gradient(ellipse at center, rgb(192,106,106) 0%, rgb(165,42,42) 100%);	
+.brown:before {
+  background: rgb(165, 42, 42);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(192, 106, 106) 0%,
+    rgb(165, 42, 42) 100%
+  );
 }
 
-.cyan:before{
-	background: rgb(0,255,255);
-	background: radial-gradient(ellipse at center, rgb(77,255,255) 0%, rgb(0,255,255) 100%);	
+.cyan:before {
+  background: rgb(0, 255, 255);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(77, 255, 255) 0%,
+    rgb(0, 255, 255) 100%
+  );
 }
 
-.magenta:before{
-	background: rgb(255,0,255);
-	background: radial-gradient(ellipse at center, rgb(255,77,255) 0%, rgb(255,0,255) 100%);
+.magenta:before {
+  background: rgb(255, 0, 255);
+  background: radial-gradient(
+    ellipse at center,
+    rgb(255, 77, 255) 0%,
+    rgb(255, 0, 255) 100%
+  );
 }
-
 
 /* Ball effects */
-.ball.fadein:before{-webkit-animation:fadein 0.3s; animation:fadein 0.3s;}
-.ball.fadeout:before{-webkit-animation:fadeout 0.3s; animation:fadeout 0.3s;}
-
-@-webkit-keyframes fadein{
-	0% {opacity:0;}
-	100% {opacity:1;}
+.ball.fadein:before {
+  -webkit-animation: fadein 0.3s;
+  animation: fadein 0.3s;
+}
+.ball.fadeout:before {
+  -webkit-animation: fadeout 0.3s;
+  animation: fadeout 0.3s;
 }
 
-@keyframes fadein{
-	0% {opacity:0;}
-	100% {opacity:1;}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-@-webkit-keyframes fadeout{
-	0% {opacity:1;}
-	100% {opacity:0;}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-@keyframes fadeout{
-	0% {opacity:1;}
-	100% {opacity:0;}
+@-webkit-keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-.ball.selected:before{
-	-webkit-animation:jumping 0.5s;
-	-webkit-animation-iteration-count: infinite;
-	animation:jumping 0.5s;
-	animation-iteration-count: infinite;
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-@-webkit-keyframes jumping{
-	0% {top:5px;}
-	50% {top:9px;}
-	100% {top:3px;}
+.ball.selected:before {
+  -webkit-animation: jumping 0.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation: jumping 0.5s;
+  animation-iteration-count: infinite;
 }
 
-@keyframes jumping{
-	0% {top:5px;}
-	50% {top:9px;}
-	100% {top:3px;}
+@-webkit-keyframes jumping {
+  0% {
+    top: 5px;
+  }
+  50% {
+    top: 9px;
+  }
+  100% {
+    top: 3px;
+  }
+}
+
+@keyframes jumping {
+  0% {
+    top: 5px;
+  }
+  50% {
+    top: 9px;
+  }
+  100% {
+    top: 3px;
+  }
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 450px) {
+  .grid {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(9, [col] 50px);
+    grid-template-rows: repeat(9, [row] 50px);
+    width: 450px;
+  }
+  .grid div {
+    width: 50px;
+    height: 50px;
+    border: 2px outset #ccc;
+  }
+  .grid div:before {
+    width: 50px;
+    height: 50px;
+  }
 }
