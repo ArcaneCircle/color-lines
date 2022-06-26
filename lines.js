@@ -43,14 +43,17 @@ var Lines = (function () {
     scoreElement = document.querySelector(".score");
     recordElement = document.querySelector(".record");
 
+    // Initializes scores api
+    window.highscores.init("Color Lines", "scoreboard");
+
     // Sets default game values
     grid = [];
     score = 0;
     blocked = false;
     selected = null;
 
-    // Tries to get the record from the local storage
-    record = localStorage.getItem("lines-record") || 0;
+    // Tries to get the record from scores api
+    record = window.highscores.getScore() || 0;
 
     // Generates forecast balls
     forecastBalls();
@@ -429,8 +432,8 @@ var Lines = (function () {
 
     // Checks if record is beaten
     if (score > record) {
-      localStorage.setItem("lines-record", score);
       recordElement.innerHTML = record = score;
+      window.highscores.setScore(score, false);
     }
 
     scoreElement.innerHTML = score;
