@@ -75,7 +75,7 @@ var Lines = (function () {
 
     // send score on visibility change
     document.addEventListener("visibilitychange", () => {
-      window.highscores.setScore(score, false);
+      if (score > record) window.highscores.setScore(score, false);
     });
 
     scoreElement.innerHTML = score;
