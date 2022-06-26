@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vite --host --open",
+    "prebuild": "vite build",
+    "build": "jszip-cli -c jszip.config.json",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.9.12"
+  }
+}
