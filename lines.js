@@ -40,6 +40,7 @@ var Lines = (function () {
     //  remove event listener
     const overlay = document.querySelector(".overlay");
     overlay.removeEventListener("click", clickOverlay);
+
     // Gets game DOM elements
     gridElement = document.querySelector(".grid");
     forecastElement = document.querySelector(".forecast");
@@ -71,6 +72,11 @@ var Lines = (function () {
 
     // Creates grid
     createGrid();
+
+    // send score on visibility change
+    document.addEventListener("visibilitychange", () => {
+      window.highscores.setScore(score, false);
+    });
 
     scoreElement.innerHTML = score;
     recordElement.innerHTML = record;
@@ -444,7 +450,6 @@ var Lines = (function () {
     // Checks if record is beaten
     if (score > record) {
       recordElement.innerHTML = record = score;
-      window.highscores.setScore(score, false);
     }
 
     scoreElement.innerHTML = score;
