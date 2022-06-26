@@ -7,6 +7,7 @@
 body {
   font-family: Arial;
   font-size: 14px;
+  background: rgb(73, 73, 73);
 }
 
 /* Forecast */
@@ -53,8 +54,8 @@ body {
   width: 10vw;
   height: 10vw;
   box-sizing: border-box;
-  background: #ddd;
-  border: 2px outset #ccc;
+  background: #5f5f5f;
+  border: 2px outset transparent;
 }
 
 .grid div:before {
@@ -238,7 +239,7 @@ body {
   .grid div {
     width: 50px;
     height: 50px;
-    border: 2px outset #ccc;
+    border: 2px outset #80808042;
   }
   .grid div:before {
     width: 50px;
