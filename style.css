@@ -232,25 +232,7 @@ body {
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
-}
-
-@media screen and (min-width: 450px) {
-  .grid {
-    display: grid;
-    grid-gap: 0;
-    grid-template-columns: repeat(9, [col] 50px);
-    grid-template-rows: repeat(9, [row] 50px);
-    width: 450px;
-  }
-  .grid div {
-    width: 50px;
-    height: 50px;
-    border: 2px outset #4d4c4c42;
-  }
-  .grid div:before {
-    width: 40px;
-    height: 40px;
-  }
+  color: #ddd;
 }
 
 /* Scores */
@@ -330,8 +312,70 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 60px;
   font-weight: 600;
-  color: var(--color-orange);
+  /* color: var(--color-orange); */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.25);
   /* transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%); */
+}
+
+.coup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+
+  cursor: pointer;
+}
+
+svg {
+  width: 4rem;
+  height: 3rem;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: auto;
+  width: 100%;
+  max-width: 450px;
+
+  background: #5f5f5f;
+  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 53%);
+  border-radius: 0.3rem;
+  color: #252525;
+
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+footer div {
+  grid-area: 1/2/3/3;
+}
+
+footer p {
+  margin-left: 1rem;
+}
+
+@media screen and (min-width: 450px) {
+  .grid {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(9, [col] 50px);
+    grid-template-rows: repeat(9, [row] 50px);
+    width: 450px;
+  }
+  .grid div {
+    width: 50px;
+    height: 50px;
+    border: 2px outset #4d4c4c42;
+  }
+  .grid div:before {
+    width: 40px;
+    height: 40px;
+  }
+  footer {
+    width: 450px;
+  }
 }
