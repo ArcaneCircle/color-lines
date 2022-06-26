@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@ffflorian/jszip-cli": "^3.1.6",
+    "concurrently": "^7.2.2",
     "vite": "^2.9.12",
     "webxdc-dev": "^0.8.0"
   }
