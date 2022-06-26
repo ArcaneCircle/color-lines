@@ -49,6 +49,14 @@ var Lines = (function () {
     // Initializes scores api
     window.highscores.init("Color Lines", "scoreboard");
 
+    // set onClick event for Highscores button
+    const highscoresButton = document.querySelector(".coup");
+    highscoresButton.addEventListener("click", () => {
+      const overlay = document.querySelector(".overlay");
+      overlay.classList.add("overlay--visible");
+      overlay.addEventListener("click", () => clickOverlay(false));
+    });
+
     // Sets default game values
     grid = [];
     score = 0;
@@ -455,10 +463,10 @@ var Lines = (function () {
     overlay.addEventListener("click", clickOverlay);
   }
 
-  function clickOverlay() {
+  function clickOverlay(newgame = true) {
     const overlay = document.querySelector(".overlay");
     overlay.classList.remove("overlay--visible");
-    init();
+    if (newgame) init();
   }
 
   /**
