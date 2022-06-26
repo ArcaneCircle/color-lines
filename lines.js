@@ -37,6 +37,9 @@ var Lines = (function () {
    * @param string
    */
   function init() {
+    //  remove event listener
+    const overlay = document.querySelector(".overlay");
+    overlay.removeEventListener("click", clickOverlay);
     // Gets game DOM elements
     gridElement = document.querySelector(".grid");
     forecastElement = document.querySelector(".forecast");
@@ -447,10 +450,15 @@ var Lines = (function () {
   function gameOver() {
     blocked = true;
 
-    // Shows score and offers to play again
-    if (confirm("Game over! Your score is " + score + "!\nPlay again?")) {
-      init();
-    }
+    const overlay = document.querySelector(".overlay");
+    overlay.classList.add("overlay--visible");
+    overlay.addEventListener("click", clickOverlay);
+  }
+
+  function clickOverlay() {
+    const overlay = document.querySelector(".overlay");
+    overlay.classList.remove("overlay--visible");
+    init();
   }
 
   /**
