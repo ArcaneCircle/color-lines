@@ -652,3 +652,5 @@ var Lines = (function () {
     };
   }
 })();
+
+Lines.init();
