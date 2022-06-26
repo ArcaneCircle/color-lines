@@ -6,6 +6,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.9.12"
+    "@ffflorian/jszip-cli": "^3.1.6",
+    "vite": "^2.9.12",
+    "webxdc-dev": "^0.8.0"
   }
 }
