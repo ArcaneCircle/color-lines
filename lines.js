@@ -82,7 +82,7 @@ var Lines = (function () {
 
     // send score on visibility change
     document.addEventListener("visibilitychange", () => {
-      if (score > record) window.highscores.setScore(score, false);
+      window.highscores.setScore(score, false);
     });
 
     // Tries to get the record from scores api
@@ -529,12 +529,12 @@ var Lines = (function () {
     score += add;
 
     storeStuff();
+
+    record = window.highscores.getScore();
     // Checks if record is beaten
     if (score > record) {
       recordElement.innerHTML = record = score;
     }
-
-    if (score > window.highscores.getScore()) window.highscores.setScore(score);
 
     scoreElement.innerHTML = score;
   }
@@ -546,6 +546,8 @@ var Lines = (function () {
    */
   function gameOver() {
     blocked = true;
+
+    window.highscores.setScore(score, false);
 
     const overlay = document.querySelector(".overlay");
     overlay.classList.add("overlay--visible");
