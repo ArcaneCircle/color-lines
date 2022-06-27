@@ -59,10 +59,21 @@ var Lines = (function () {
     });
 
     // Sets default game values
-    grid = [];
-    score = 0;
+    grid =
+      window.localStorage.getItem("color-lines-grid") !== null
+        ? JSON.parse(window.localStorage.getItem("color-lines-grid"))
+        : [];
+    score =
+      window.localStorage.getItem("color-lines-score") !== null
+        ? JSON.parse(window.localStorage.getItem("color-lines-score"))
+        : 0;
     blocked = false;
     selected = null;
+
+    // send score on visibility change
+    document.addEventListener("visibilitychange", () => {
+      if (score > record) window.highscores.setScore(score, false);
+    });
 
     // Tries to get the record from scores api
     record = window.highscores.getScore() || 0;
@@ -70,13 +81,12 @@ var Lines = (function () {
     // Generates forecast balls
     forecastBalls();
 
-    // Creates grid
-    createGrid();
-
-    // send score on visibility change
-    document.addEventListener("visibilitychange", () => {
-      if (score > record) window.highscores.setScore(score, false);
-    });
+    // Creates or restore grid
+    if (window.localStorage.getItem("color-lines-grid") !== null) {
+      restoreGrid();
+    } else {
+      createGrid();
+    }
 
     scoreElement.innerHTML = score;
     recordElement.innerHTML = record;
@@ -131,6 +141,51 @@ var Lines = (function () {
     addBalls();
   }
 
+  function restoreGrid() {
+    // Clears grid element
+    gridElement.innerHTML = "";
+
+    // grid already exists
+    for (var i = 0; i < 9; i++) {
+      for (var j = 0; j < 9; j++) {
+        // Creates new cell
+        var cell = document.createElement("div");
+
+        // Sets cell attributes
+        cell.id = "cell-" + j + "-" + i;
+        cell.className =
+          grid[i][j] !== 0
+            ? "ball " + colors[parseInt(grid[i][j])] + " fadein"
+            : "empty";
+        cell.dataset.x = j;
+        cell.dataset.y = i;
+
+        cell.style.gridArea = `${i + 1} / ${j + 1} / ${i + 2} / ${j + 2}`;
+
+        // Adds cell to the grid
+        gridElement.appendChild(cell);
+
+        // Listens for a click event
+        cell.addEventListener(
+          "click",
+          function (e) {
+            if (blocked) {
+              return;
+            } else if (e.currentTarget.className === "empty") {
+              onEmptyCellClick(e);
+            } else {
+              onBallClick(e);
+            }
+          },
+          false
+        );
+      }
+    }
+
+    // no need to add random balls on the grid
+    // addBalls();
+  }
+
   /**
    * Gets cells by selector
    *
@@ -171,12 +226,20 @@ var Lines = (function () {
     selected = e.currentTarget;
   }
 
+  function storeStuff() {
+    // store grid on every cell click
+    window.localStorage.setItem("color-lines-grid", JSON.stringify(grid));
+    // store score
+    window.localStorage.setItem("color-lines-score", JSON.stringify(score));
+  }
+
   /**
    * Event: empty cell clicked
    *
    * @param object
    */
   function onEmptyCellClick(e) {
+    storeStuff();
     // Checks if any cell is selected
     if (!selected) {
       return;
@@ -447,6 +510,7 @@ var Lines = (function () {
   function updateScore(add) {
     score += add;
 
+    storeStuff();
     // Checks if record is beaten
     if (score > record) {
       recordElement.innerHTML = record = score;
@@ -469,6 +533,7 @@ var Lines = (function () {
   }
 
   function clickOverlay(newgame = true) {
+    // console.log(grid);
     const overlay = document.querySelector(".overlay");
     overlay.classList.remove("overlay--visible");
     if (newgame) init();
