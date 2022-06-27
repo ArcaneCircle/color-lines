@@ -155,45 +155,48 @@ var Lines = (function () {
     // Clears grid element
     gridElement.innerHTML = "";
 
-    // grid already exists
-    for (var i = 0; i < 9; i++) {
-      for (var j = 0; j < 9; j++) {
-        // Creates new cell
-        var cell = document.createElement("div");
+    const areEmptyCells = getCells(".empty").length > 0;
+    if (areEmptyCells) {
+      // grid already exists
+      for (var i = 0; i < 9; i++) {
+        for (var j = 0; j < 9; j++) {
+          // Creates new cell
+          var cell = document.createElement("div");
 
-        // Sets cell attributes
-        cell.id = "cell-" + j + "-" + i;
-        cell.className =
-          grid[i][j] !== 0
-            ? "ball " + colors[parseInt(grid[i][j])] + " fadein"
-            : "empty";
-        cell.dataset.x = j;
-        cell.dataset.y = i;
+          // Sets cell attributes
+          cell.id = "cell-" + j + "-" + i;
+          cell.className =
+            grid[i][j] !== 0
+              ? "ball " + colors[parseInt(grid[i][j])] + " fadein"
+              : "empty";
+          cell.dataset.x = j;
+          cell.dataset.y = i;
 
-        cell.style.gridArea = `${i + 1} / ${j + 1} / ${i + 2} / ${j + 2}`;
+          cell.style.gridArea = `${i + 1} / ${j + 1} / ${i + 2} / ${j + 2}`;
 
-        // Adds cell to the grid
-        gridElement.appendChild(cell);
+          // Adds cell to the grid
+          gridElement.appendChild(cell);
 
-        // Listens for a click event
-        cell.addEventListener(
-          "click",
-          function (e) {
-            if (blocked) {
-              return;
-            } else if (e.currentTarget.className === "empty") {
-              onEmptyCellClick(e);
-            } else {
-              onBallClick(e);
-            }
-          },
-          false
-        );
+          // Listens for a click event
+          cell.addEventListener(
+            "click",
+            function (e) {
+              if (blocked) {
+                return;
+              } else if (e.currentTarget.className === "empty") {
+                onEmptyCellClick(e);
+              } else {
+                onBallClick(e);
+              }
+            },
+            false
+          );
+        }
       }
+    } else {
+      // grid is full
+      createGrid();
     }
-
-    // no need to add random balls on the grid
-    // addBalls();
   }
 
   /**
