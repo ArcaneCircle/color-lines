@@ -55,6 +55,14 @@ var Lines = (function () {
     highscoresButton.addEventListener("click", () => {
       const overlay = document.querySelector(".overlay");
       const game = document.querySelector("#game");
+      const scoreboard = document.querySelector("#scoreboard");
+      if (scoreboard.innerHTML === "") {
+        const p = document.createElement("p");
+        p.innerHTML = "No scores yet";
+        p.classList.add("score-row");
+        p.style.textAlign = "center";
+        scoreboard.appendChild(p);
+      }
       overlay.classList.add("overlay--visible");
       game.classList.add("blur");
       overlay.addEventListener("click", () => clickOverlay(false));
