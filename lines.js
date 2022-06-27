@@ -231,6 +231,12 @@ var Lines = (function () {
     window.localStorage.setItem("color-lines-grid", JSON.stringify(grid));
     // store score
     window.localStorage.setItem("color-lines-score", JSON.stringify(score));
+    // update record
+    recordElement = document.querySelector(".record");
+    recordElement.innerHTML =
+      window.highscores.getScore() < record
+        ? record
+        : window.highscores.getScore();
   }
 
   /**
@@ -517,6 +523,8 @@ var Lines = (function () {
     if (score > record) {
       recordElement.innerHTML = record = score;
     }
+
+    if (score > window.highscores.getScore()) window.highscores.setScore(score);
 
     scoreElement.innerHTML = score;
   }
