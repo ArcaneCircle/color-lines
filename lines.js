@@ -536,7 +536,16 @@ var Lines = (function () {
     // console.log(grid);
     const overlay = document.querySelector(".overlay");
     overlay.classList.remove("overlay--visible");
-    if (newgame) init();
+    const header = document.querySelector(".overlay__text");
+    header.innerHTML = newgame ? "Game Over" : "Scoreboard";
+    if (newgame) {
+      window.highscores.setScore(score, false);
+      // reset grid
+      window.localStorage.removeItem("color-lines-grid");
+      // reset score
+      window.localStorage.removeItem("color-lines-score");
+      init();
+    }
   }
 
   /**
