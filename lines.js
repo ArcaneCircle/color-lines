@@ -39,7 +39,7 @@ var Lines = (function () {
   function init() {
     //  remove event listener
     const overlay = document.querySelector(".overlay");
-    overlay.removeEventListener("click", clickOverlay);
+    overlay.removeEventListener("click", () => clickOverlay(true));
 
     // Gets game DOM elements
     gridElement = document.querySelector(".grid");
@@ -539,15 +539,13 @@ var Lines = (function () {
 
     const overlay = document.querySelector(".overlay");
     overlay.classList.add("overlay--visible");
-    overlay.addEventListener("click", clickOverlay);
+    overlay.addEventListener("click", () => clickOverlay(true));
   }
 
-  function clickOverlay(newgame = true) {
+  function clickOverlay(newgame) {
     // console.log(grid);
     const overlay = document.querySelector(".overlay");
     overlay.classList.remove("overlay--visible");
-    const header = document.querySelector(".overlay__text");
-    header.innerHTML = newgame ? "Game Over" : "Scoreboard";
     if (newgame) {
       window.highscores.setScore(score, false);
       // reset grid
