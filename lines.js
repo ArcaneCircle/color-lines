@@ -328,6 +328,8 @@ var Lines = (function () {
       }
     }, 300);
 
+    storeStuff();
+
     // Generates forecast balls
     forecastBalls();
   }
