@@ -54,7 +54,9 @@ var Lines = (function () {
     const highscoresButton = document.querySelector(".coup");
     highscoresButton.addEventListener("click", () => {
       const overlay = document.querySelector(".overlay");
+      const game = document.querySelector("#game");
       overlay.classList.add("overlay--visible");
+      game.classList.add("blur");
       overlay.addEventListener("click", () => clickOverlay(false));
     });
 
@@ -545,7 +547,9 @@ var Lines = (function () {
   function clickOverlay(newgame) {
     // console.log(grid);
     const overlay = document.querySelector(".overlay");
+    const game = document.querySelector("#game");
     overlay.classList.remove("overlay--visible");
+    game.classList.remove("blur");
     if (newgame) {
       window.highscores.setScore(score, false);
       // reset grid
