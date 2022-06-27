@@ -155,7 +155,7 @@ var Lines = (function () {
     // Clears grid element
     gridElement.innerHTML = "";
 
-    const areEmptyCells = getCells(".empty").length > 0;
+    const areEmptyCells = grid.flat().filter((n) => n === 0).length > 0;
     if (areEmptyCells) {
       // grid already exists
       for (var i = 0; i < 9; i++) {
