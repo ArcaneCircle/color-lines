@@ -377,6 +377,7 @@ var Lines = (function () {
 
     for (var k in lineSets) {
       var lines = lineSets[k],
+        count = 0,
         scoreAdd = 0;
 
       for (var i = 0; i < lines.length; i++) {
@@ -387,9 +388,11 @@ var Lines = (function () {
 
           cell.classList.add("fadeout");
           grid[y][x] = 0;
-          scoreAdd += 2;
+          count++;
         }
       }
+
+      scoreAdd += count * count;
     }
 
     // Updates score
