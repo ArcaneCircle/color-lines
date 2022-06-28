@@ -155,8 +155,8 @@ var Lines = (function () {
     // Clears grid element
     gridElement.innerHTML = "";
 
-    const areEmptyCells = grid.flat().filter((n) => n === 0).length > 0;
-    if (areEmptyCells) {
+    const areNotEmptyCells = grid.flat().filter((n) => n === 0).length > 0;
+    if (areNotEmptyCells) {
       // grid already exists
       for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
@@ -195,6 +195,8 @@ var Lines = (function () {
       }
     } else {
       // grid is full
+      grid = [];
+      score = 0;
       createGrid();
     }
   }
