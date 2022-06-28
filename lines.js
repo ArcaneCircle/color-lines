@@ -50,6 +50,18 @@ var Lines = (function () {
     // Initializes scores api
     window.highscores.init("Color Lines", "scoreboard");
 
+    // Sets default game values
+    grid =
+      window.localStorage.getItem("color-lines-grid") !== null
+        ? JSON.parse(window.localStorage.getItem("color-lines-grid"))
+        : [];
+    score =
+      window.localStorage.getItem("color-lines-score") !== null
+        ? JSON.parse(window.localStorage.getItem("color-lines-score"))
+        : 0;
+    blocked = false;
+    selected = null;
+
     // set onClick event for Highscores button
     const highscoresButton = document.querySelector(".coup");
     highscoresButton.addEventListener("click", () => {
@@ -68,17 +80,17 @@ var Lines = (function () {
       overlay.addEventListener("click", () => clickOverlay(false));
     });
 
-    // Sets default game values
-    grid =
-      window.localStorage.getItem("color-lines-grid") !== null
-        ? JSON.parse(window.localStorage.getItem("color-lines-grid"))
-        : [];
-    score =
-      window.localStorage.getItem("color-lines-score") !== null
-        ? JSON.parse(window.localStorage.getItem("color-lines-score"))
-        : 0;
-    blocked = false;
-    selected = null;
+    // Set onClick() for new game button
+    const newGameButton = document.querySelector(".newgame-label");
+    newGameButton.addEventListener("click", () => {
+      // send score
+      window.highscores.setScore(score, false);
+      // create new game
+      grid = [];
+      score = 0;
+      scoreElement.innerHTML = score;
+      createGrid();
+    });
 
     // send score on visibility change
     document.addEventListener("visibilitychange", () => {
