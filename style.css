@@ -358,9 +358,22 @@ svg {
   margin: 0.5rem auto 0.5rem 1rem;
 }
 
-.newgame-label {
+.newgame-container {
   grid-area: 1/2/3/3;
-  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.newgame-container svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+.newgame-label {
+  margin: auto 1rem;
 }
 
 footer {

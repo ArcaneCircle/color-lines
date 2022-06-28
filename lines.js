@@ -81,7 +81,7 @@ var Lines = (function () {
     });
 
     // Set onClick() for new game button
-    const newGameButton = document.querySelector(".newgame-label");
+    const newGameButton = document.querySelector(".newgame-container");
     newGameButton.addEventListener("click", () => {
       // send score
       window.highscores.setScore(score, false);
