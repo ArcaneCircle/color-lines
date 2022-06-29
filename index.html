@@ -10,7 +10,15 @@
       <section class="forecast-container">
         <p class="next-label">Next:</p>
         <div class="forecast"></div>
-        <div class="newgame-container">
+        <p class="forecast-children">Score: <span class="score">0</span></p>
+        <p class="forecast-children">
+          Record:
+          <span class="record">0</span>
+        </p>
+      </section>
+      <div class="grid"></div>
+      <footer>
+        <div class="footer-item newgame-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -18,27 +26,40 @@
             width="1em"
             height="1em"
             preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 16 16"
+            viewBox="0 0 32 32"
           >
             <path
               fill="currentColor"
-              fill-rule="evenodd"
-              d="M12.75 8a4.5 4.5 0 0 1-8.61 1.834l-1.391.565A6.001 6.001 0 0 0 14.25 8A6 6 0 0 0 3.5 4.334V2.5H2v4l.75.75h3.5v-1.5H4.352A4.5 4.5 0 0 1 12.75 8z"
-              clip-rule="evenodd"
+              d="M26 18A10 10 0 1 1 16 8h6.182l-3.584 3.585L20 13l6-6l-6-6l-1.402 1.414L22.185 6H16a12 12 0 1 0 12 12Z"
             />
           </svg>
           <p class="newgame-label">Restart</p>
         </div>
-      </section>
-      <div class="grid"></div>
-      <footer>
-        <p>Score: <span class="score">0</span></p>
-        <p>
-          Record:
-          <span class="record">0</span>
-        </p>
-        <div class="coup">
+
+        <div class="footer-item skip-button">
           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 48 48"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 40.836c4.893-5.973 9.238-9.362 13.036-10.168c3.797-.805 7.412-.927 10.846-.365V41L44 23.545L27.882 7v10.167c-6.349.05-11.746 2.328-16.192 6.833C7.245 28.505 4.681 34.117 4 40.836Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <div class="skip">Skip</div>
+        </div>
+        <div class="footer-item coup">
+          <svg
+            class=""
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             role="img"
@@ -54,6 +75,7 @@
               d="M18.8 27C18.7 27 8 24.7 8 13v-1h7v2h-5c.6 9.2 9.1 11 9.2 11l-.4 2zm12.4 0l-.4-2c.4-.1 8.6-1.9 9.2-11h-5v-2h7v1c0 11.7-10.7 14-10.8 14z"
             />
           </svg>
+          <p>Scoreboard</p>
         </div>
       </footer>
     </div>
