@@ -610,7 +610,9 @@ var Lines = (function () {
 
     window.highscores.setScore(score, false);
 
+    const game = document.querySelector("#game");
     const overlay = document.querySelector(".overlay");
+    game.classList.add("blur");
     overlay.classList.add("overlay--visible");
     overlay.addEventListener("click", () => clickOverlay(true));
   }
