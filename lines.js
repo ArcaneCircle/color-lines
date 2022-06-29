@@ -98,7 +98,7 @@ var Lines = (function () {
       addBalls(function (cells) {
         var lineSets = [];
 
-        for (var i = 0; i < cells.length; i++) {
+        for (let i = 0; i < cells.length; i++) {
           var lines = getLines(cells[i]);
           if (lines) {
             lineSets.push(lines);
@@ -117,8 +117,7 @@ var Lines = (function () {
             grid = [];
             score = 0;
             scoreElement.innerHTML = score;
-            // Ends the game
-            return gameOver();
+            createGrid();
           }
         }
       });
@@ -381,6 +380,8 @@ var Lines = (function () {
       }
     }
 
+    storeStuff();
+
     // Sets timeout for animation
     setTimeout(function () {
       each(getCells(".fadein"), function (cell) {
@@ -392,8 +393,6 @@ var Lines = (function () {
         return callback(cells);
       }
     }, 300);
-
-    storeStuff();
 
     // Generates forecast balls
     forecastBalls();
@@ -607,7 +606,6 @@ var Lines = (function () {
   }
 
   function clickOverlay(newgame) {
-    // console.log(grid);
     const overlay = document.querySelector(".overlay");
     const game = document.querySelector("#game");
     overlay.classList.remove("overlay--visible");
