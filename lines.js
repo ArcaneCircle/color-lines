@@ -31,6 +31,77 @@ var Lines = (function () {
     },
   };
 
+  // set onClick event for Highscores button
+  const highscoresButton = document.querySelector(".coup");
+  highscoresButton.addEventListener("click", () => {
+    const overlay = document.querySelector(".overlay");
+    const game = document.querySelector("#game");
+    const scoreboard = document.querySelector("#scoreboard");
+    if (scoreboard.innerHTML === "") {
+      const p = document.createElement("p");
+      p.innerHTML = "No scores yet";
+      p.classList.add("score-row");
+      p.style.textAlign = "center";
+      scoreboard.appendChild(p);
+    }
+    overlay.classList.add("overlay--visible");
+    game.classList.add("blur");
+    overlay.addEventListener("click", () => clickOverlay(false));
+  });
+
+  // Set onClick() for new game button
+  const newGameButton = document.querySelector(".newgame-container");
+  newGameButton.addEventListener("click", () => {
+    // send score
+    window.highscores.setScore(score, false);
+    // create new game
+    grid = [];
+    score = 0;
+    scoreElement.innerHTML = score;
+    createGrid();
+  });
+
+  // set onClick for skip button
+  const skipButton = document.querySelector(".skip-button");
+  skipButton.addEventListener("click", () => {
+    addBalls(function (cells) {
+      var lineSets = [];
+
+      for (let i = 0; i < cells.length; i++) {
+        var lines = getLines(cells[i]);
+        if (lines) {
+          lineSets.push(lines);
+        }
+      }
+
+      // Checks if five-ball lines are found after adding balls
+      if (lineSets.length > 0) {
+        removeLines(lineSets);
+      } else {
+        // Checks if the grid is completely filled with balls
+        if (getCells(".empty").length === 0) {
+          grid = [];
+          score = 0;
+          scoreElement.innerHTML = score;
+          const game = document.querySelector("#game");
+          const overlay = document.querySelector(".overlay");
+          game.classList.add("blur");
+          overlay.classList.add("overlay--visible");
+          overlay.addEventListener("click", () => clickOverlay(true));
+        }
+      }
+    });
+  });
+
+  // send score on visibility change
+  document.addEventListener("visibilitychange", () => {
+    window.localStorage.setItem(
+      "color-lines-forecast",
+      JSON.stringify(forecast)
+    );
+    window.highscores.setScore(score, false);
+  });
+
   /**
    * Initializes game
    *
@@ -61,77 +132,6 @@ var Lines = (function () {
         : 0;
     blocked = false;
     selected = null;
-
-    // set onClick event for Highscores button
-    const highscoresButton = document.querySelector(".coup");
-    highscoresButton.addEventListener("click", () => {
-      const overlay = document.querySelector(".overlay");
-      const game = document.querySelector("#game");
-      const scoreboard = document.querySelector("#scoreboard");
-      if (scoreboard.innerHTML === "") {
-        const p = document.createElement("p");
-        p.innerHTML = "No scores yet";
-        p.classList.add("score-row");
-        p.style.textAlign = "center";
-        scoreboard.appendChild(p);
-      }
-      overlay.classList.add("overlay--visible");
-      game.classList.add("blur");
-      overlay.addEventListener("click", () => clickOverlay(false));
-    });
-
-    // Set onClick() for new game button
-    const newGameButton = document.querySelector(".newgame-container");
-    newGameButton.addEventListener("click", () => {
-      // send score
-      window.highscores.setScore(score, false);
-      // create new game
-      grid = [];
-      score = 0;
-      scoreElement.innerHTML = score;
-      createGrid();
-    });
-
-    // set onClick for skip button
-    const skipButton = document.querySelector(".skip-button");
-    skipButton.addEventListener("click", () => {
-      addBalls(function (cells) {
-        var lineSets = [];
-
-        for (let i = 0; i < cells.length; i++) {
-          var lines = getLines(cells[i]);
-          if (lines) {
-            lineSets.push(lines);
-          }
-        }
-
-        // Checks if five-ball lines are found after adding balls
-        if (lineSets.length > 0) {
-          removeLines(lineSets);
-        } else {
-          // Checks if the grid is completely filled with balls
-          if (getCells(".empty").length === 0) {
-            // send score
-            window.highscores.setScore(score, false);
-            // create new game
-            grid = [];
-            score = 0;
-            scoreElement.innerHTML = score;
-            createGrid();
-          }
-        }
-      });
-    });
-
-    // send score on visibility change
-    document.addEventListener("visibilitychange", () => {
-      console.log(forecast);
-      window.localStorage.setItem(
-        "color-lines-forecast",
-        JSON.stringify(forecast)
-      );
-      window.highscores.setScore(score, false);
-    });
 
     // Tries to get the record from scores api
     record = window.highscores.getScore() || 0;
@@ -577,7 +577,6 @@ var Lines = (function () {
       ball.className = "ball " + forecast[i];
       forecastElement.appendChild(ball);
     }
-    console.log(forecast);
     window.localStorage.removeItem("color-lines-forecast");
   }
 
