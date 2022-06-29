@@ -326,9 +326,9 @@ body {
 .coup {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   margin-left: 0.5rem;
-  margin-right: 1rem;
+  margin-right: 0;
 
   cursor: pointer;
 }
@@ -373,7 +373,8 @@ svg {
 }
 
 .newgame-label {
-  margin: auto 1rem;
+  margin: auto 0.25rem;
+  margin-right: 1rem;
 }
 
 footer {
