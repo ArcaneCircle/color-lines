@@ -92,6 +92,16 @@ var Lines = (function () {
       createGrid();
     });
 
+    // set onClick for skip button
+    const skipButton = document.querySelector(".skip-button");
+    skipButton.addEventListener("click", () => {
+      if (getCells(".empty").length === 0) {
+        gameOver();
+      } else {
+        addBalls();
+      }
+    });
+
     // send score on visibility change
     document.addEventListener("visibilitychange", () => {
       window.highscores.setScore(score, false);
