@@ -1,92 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div id="game">
-      <section class="forecast-container">
-        <p class="next-label">Next:</p>
-        <div class="forecast"></div>
-        <p class="forecast-children">Score: <span class="score">0</span></p>
-        <p class="forecast-children">
-          Record:
-          <span class="record">0</span>
-        </p>
-      </section>
-      <div class="grid"></div>
-      <footer>
-        <div class="footer-item newgame-container">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            width="1em"
-            height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 32 32"
-          >
-            <path
-              fill="currentColor"
-              d="M26 18A10 10 0 1 1 16 8h6.182l-3.584 3.585L20 13l6-6l-6-6l-1.402 1.414L22.185 6H16a12 12 0 1 0 12 12Z"
-            />
-          </svg>
-          <p class="newgame-label">Restart</p>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="webxdc.js"></script>
+    </head>
+    <body>
+        <div id="game">
+            <section class="forecast-container">
+                <p class="next-label">Next:</p>
+                <div class="forecast"></div>
+                <p class="forecast-children">Score: <span class="score">0</span></p>
+                <p class="forecast-children">
+                    Record:
+                    <span class="record">0</span>
+                </p>
+            </section>
+            <div class="grid"></div>
+            <footer>
+                <div class="footer-item newgame-container">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        role="img"
+                        width="1em"
+                        height="1em"
+                        preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 32 32"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M26 18A10 10 0 1 1 16 8h6.182l-3.584 3.585L20 13l6-6l-6-6l-1.402 1.414L22.185 6H16a12 12 0 1 0 12 12Z"
+                        />
+                    </svg>
+                    <p class="newgame-label">Restart</p>
+                </div>
+
+                <div class="footer-item skip-button">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        role="img"
+                        width="1em"
+                        height="1em"
+                        preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 48 48"
+                    >
+                        <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 40.836c4.893-5.973 9.238-9.362 13.036-10.168c3.797-.805 7.412-.927 10.846-.365V41L44 23.545L27.882 7v10.167c-6.349.05-11.746 2.328-16.192 6.833C7.245 28.505 4.681 34.117 4 40.836Z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                    <div class="skip">Skip</div>
+                </div>
+                <div class="footer-item coup">
+                    <svg
+                        class=""
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        role="img"
+                        preserveAspectRatio="xMidYMid meet"
+                        viewBox="5 -2 40 50"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M28.6 29.4c3-2.3 7.4-5.7 7.4-18.4v-1H14v1c0 12.7 4.5 16.1 7.4 18.4c1.7 1.3 2.6 2 2.6 3.6v3c-1.6.2-3.2.8-3.8 2H18c-1.1 0-2 .9-2 2h18c0-1.1-.9-2-2-2h-2.2c-.6-1.2-2.1-1.8-3.8-2v-3c0-1.6.8-2.3 2.6-3.6zm-3.6.5c-.6-.8-1.5-1.5-2.3-2.1c-2.7-2.1-6.4-4.9-6.6-15.8h18c-.2 10.8-3.9 13.7-6.6 15.8c-1 .7-1.9 1.3-2.5 2.1z"
+                        />
+                        <path
+                            fill="currentColor"
+                            d="M18.8 27C18.7 27 8 24.7 8 13v-1h7v2h-5c.6 9.2 9.1 11 9.2 11l-.4 2zm12.4 0l-.4-2c.4-.1 8.6-1.9 9.2-11h-5v-2h7v1c0 11.7-10.7 14-10.8 14z"
+                        />
+                    </svg>
+                    <p>Scoreboard</p>
+                </div>
+            </footer>
+        </div>
+        <div class="overlay">
+            <h2 class="overlay__text">Scoreboard</h2>
+            <div id="scoreboard"></div>
         </div>
 
-        <div class="footer-item skip-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            width="1em"
-            height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 48 48"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 40.836c4.893-5.973 9.238-9.362 13.036-10.168c3.797-.805 7.412-.927 10.846-.365V41L44 23.545L27.882 7v10.167c-6.349.05-11.746 2.328-16.192 6.833C7.245 28.505 4.681 34.117 4 40.836Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <div class="skip">Skip</div>
-        </div>
-        <div class="footer-item coup">
-          <svg
-            class=""
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            role="img"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="5 -2 40 50"
-          >
-            <path
-              fill="currentColor"
-              d="M28.6 29.4c3-2.3 7.4-5.7 7.4-18.4v-1H14v1c0 12.7 4.5 16.1 7.4 18.4c1.7 1.3 2.6 2 2.6 3.6v3c-1.6.2-3.2.8-3.8 2H18c-1.1 0-2 .9-2 2h18c0-1.1-.9-2-2-2h-2.2c-.6-1.2-2.1-1.8-3.8-2v-3c0-1.6.8-2.3 2.6-3.6zm-3.6.5c-.6-.8-1.5-1.5-2.3-2.1c-2.7-2.1-6.4-4.9-6.6-15.8h18c-.2 10.8-3.9 13.7-6.6 15.8c-1 .7-1.9 1.3-2.5 2.1z"
-            />
-            <path
-              fill="currentColor"
-              d="M18.8 27C18.7 27 8 24.7 8 13v-1h7v2h-5c.6 9.2 9.1 11 9.2 11l-.4 2zm12.4 0l-.4-2c.4-.1 8.6-1.9 9.2-11h-5v-2h7v1c0 11.7-10.7 14-10.8 14z"
-            />
-          </svg>
-          <p>Scoreboard</p>
-        </div>
-      </footer>
-    </div>
-    <div class="overlay">
-      <h2 class="overlay__text">Scoreboard</h2>
-      <div id="scoreboard"></div>
-    </div>
-
-    <script src="webxdc.js"></script>
-    <script type="module" src="./webxdc-scores.js"></script>
-
-    <script type="module" src="./lines.js"></script>
-  </body>
+        <script type="module" src="./main.js"></script>
+    </body>
 </html>

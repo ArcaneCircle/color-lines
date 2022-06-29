@@ -1,20 +1,17 @@
-/**
- * lines.js
- *
- * Copyright (c) 2014 Arnis Ritins
- * Released under the MIT license
- */
-var Lines = (function () {
+import './styles.css'
+import './webxdc-scores.js'
+
+let Lines = (function () {
   "use strict";
 
   // Game variables
-  var grid, forecast, score, record, selected, blocked;
+  let grid, forecast, score, record, selected, blocked;
 
   // Game DOM elements
-  var gridElement, forecastElement, scoreElement, recordElement;
+  let gridElement, forecastElement, scoreElement, recordElement;
 
   // Ball colors
-  var colors = {
+  let colors = {
     1: "blue",
     2: "cyan",
     3: "red",
@@ -23,7 +20,7 @@ var Lines = (function () {
     6: "yellow",
     7: "magenta",
     key: function (color) {
-      for (var key in this) {
+      for (let key in this) {
         if (this[key] === color) {
           return parseInt(key);
         }
@@ -65,10 +62,10 @@ var Lines = (function () {
   const skipButton = document.querySelector(".skip-button");
   skipButton.addEventListener("click", () => {
     addBalls(function (cells) {
-      var lineSets = [];
+      let lineSets = [];
 
       for (let i = 0; i < cells.length; i++) {
-        var lines = getLines(cells[i]);
+        let lines = getLines(cells[i]);
         if (lines) {
           lineSets.push(lines);
         }
@@ -157,13 +154,13 @@ var Lines = (function () {
     // Clears grid element
     gridElement.innerHTML = "";
 
-    for (var i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
       grid[i] = [];
-      for (var j = 0; j < 9; j++) {
+      for (let j = 0; j < 9; j++) {
         grid[i][j] = 0;
 
         // Creates new cell
-        var cell = document.createElement("div");
+        let cell = document.createElement("div");
 
         // Sets cell attributes
         cell.id = "cell-" + j + "-" + i;
@@ -206,10 +203,10 @@ var Lines = (function () {
     const areNotEmptyCells = grid.flat().filter((n) => n === 0).length > 0;
     if (areNotEmptyCells) {
       // grid already exists
-      for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
+      for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
           // Creates new cell
-          var cell = document.createElement("div");
+          let cell = document.createElement("div");
 
           // Sets cell attributes
           cell.id = "cell-" + j + "-" + i;
@@ -314,12 +311,12 @@ var Lines = (function () {
       return;
     }
 
-    var to = e.currentTarget,
+    let to = e.currentTarget,
       from = selected;
 
     // Tries to find the path
-    var astar = new Astar(grid);
-    var path = astar.find(
+    let astar = new Astar(grid);
+    let path = astar.find(
       from.dataset.x,
       from.dataset.y,
       to.dataset.x,
@@ -329,7 +326,7 @@ var Lines = (function () {
     // Checks if path were found
     if (path) {
       moveBall(from, to, path, function () {
-        var lines = getLines(to);
+        let lines = getLines(to);
 
         // Checks if there are five-ball lines for destination cell
         if (lines) {
@@ -337,10 +334,10 @@ var Lines = (function () {
         } else {
           // Adds balls and checks for five-ball lines
           addBalls(function (cells) {
-            var lineSets = [];
+            let lineSets = [];
 
-            for (var i = 0; i < cells.length; i++) {
-              var lines = getLines(cells[i]);
+            for (let i = 0; i < cells.length; i++) {
+              let lines = getLines(cells[i]);
               if (lines) {
                 lineSets.push(lines);
               }
@@ -369,13 +366,13 @@ var Lines = (function () {
    */
   function addBalls(callback) {
     blocked = true;
-    var cells = [];
+    let cells = [];
 
-    for (var i = 0; i < 3; i++) {
-      var emptyCells = getCells(".empty");
+    for (let i = 0; i < 3; i++) {
+      let emptyCells = getCells(".empty");
       if (emptyCells.length > 0) {
         // Gets random empty cell
-        var cell = emptyCells[rand(0, emptyCells.length - 1)];
+        let cell = emptyCells[rand(0, emptyCells.length - 1)];
         grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[i]);
 
         cells.push(cell);
@@ -411,16 +408,16 @@ var Lines = (function () {
   function removeLines(lineSets) {
     blocked = true;
 
-    for (var k in lineSets) {
-      var lines = lineSets[k],
+    for (let k in lineSets) {
+      let lines = lineSets[k],
         count = 0,
         scoreAdd = 0;
 
-      for (var i = 0; i < lines.length; i++) {
-        for (var j = 0; j < lines[i].length; j++) {
-          var x = lines[i][j][0],
+      for (let i = 0; i < lines.length; i++) {
+        for (let j = 0; j < lines[i].length; j++) {
+          let x = lines[i][j][0],
             y = lines[i][j][1];
-          var cell = getCell(x, y);
+          let cell = getCell(x, y);
 
           cell.classList.add("fadeout");
           grid[y][x] = 0;
@@ -455,14 +452,14 @@ var Lines = (function () {
     blocked = true;
     grid[from.dataset.y][from.dataset.x] = 0;
 
-    var color = from.classList.item(1);
-    var previous;
+    let color = from.classList.item(1);
+    let previous;
 
     // Removes selected ball
     from.className = "empty";
     selected = null;
 
-    for (var i = 0; i <= path.length; i++) {
+    for (let i = 0; i <= path.length; i++) {
       (function (i) {
         setTimeout(function () {
           if (path.length == i) {
@@ -477,7 +474,7 @@ var Lines = (function () {
             previous.className = "empty";
           }
 
-          var cell = (previous = getCell(path[i].x, path[i].y));
+          let cell = (previous = getCell(path[i].x, path[i].y));
           cell.className = "ball " + color;
         }, 50 * i);
       })(i);
@@ -491,15 +488,15 @@ var Lines = (function () {
    * @return array|bool
    */
   function getLines(cell) {
-    var x = parseInt(cell.dataset.x),
+    let x = parseInt(cell.dataset.x),
       y = parseInt(cell.dataset.y),
       ball = colors.key(cell.classList.item(1)),
       lines = [[[x, y]], [[x, y]], [[x, y]], [[x, y]]];
 
-    var l, r, d, u, lu, ru, ld, rd;
+    let l, r, d, u, lu, ru, ld, rd;
     l = r = d = u = lu = ru = ld = rd = ball;
 
-    var i = 1;
+    let i = 1;
     while ([l, r, u, d, lu, ru, ld, rd].indexOf(ball) !== -1) {
       // Horizontal lines
       if (l == grid[y][x - i]) {
@@ -550,7 +547,7 @@ var Lines = (function () {
       i++;
     }
 
-    for (var i = lines.length - 1; i >= 0; i--) {
+    for (let i = lines.length - 1; i >= 0; i--) {
       if (lines[i].length < 5) {
         lines.splice(i, 1);
       }
@@ -571,8 +568,8 @@ var Lines = (function () {
       : [];
     forecastElement.innerHTML = "";
 
-    for (var i = 0; i < 3; i++) {
-      var ball = document.createElement("div");
+    for (let i = 0; i < 3; i++) {
+      let ball = document.createElement("div");
       if (!isForecastSaved) forecast[i] = colors[rand(1, 7)];
       ball.className = "ball " + forecast[i];
       forecastElement.appendChild(ball);
@@ -649,7 +646,7 @@ var Lines = (function () {
    * @param function
    */
   function each(object, callback) {
-    for (var i = 0; i < object.length; i++) {
+    for (let i = 0; i < object.length; i++) {
       callback(object[i], i);
     }
   }
@@ -667,8 +664,8 @@ var Lines = (function () {
    * @param array
    */
   function Astar(grid) {
-    var nodes = [];
-    var openset = [];
+    let nodes = [];
+    let openset = [];
 
     /**
      * Initializes all nodes
@@ -677,9 +674,9 @@ var Lines = (function () {
      * @param integer
      */
     function init(startX, startY) {
-      for (var i = 0; i < 9; i++) {
+      for (let i = 0; i < 9; i++) {
         nodes[i] = [];
-        for (var j = 0; j < 9; j++) {
+        for (let j = 0; j < 9; j++) {
           nodes[i][j] = {
             obstacle: grid[i][j],
             parent: 0,
@@ -711,16 +708,16 @@ var Lines = (function () {
 
       // Goes through all open nodes
       while (openset.length) {
-        var index = 0;
+        let index = 0;
 
         // Finds the node index with the highest F value
-        for (var i = 0; i < openset.length; i++) {
+        for (let i = 0; i < openset.length; i++) {
           if (openset[i].f < openset[index].f) {
             index = i;
           }
         }
 
-        var currentNode = openset[index];
+        let currentNode = openset[index];
 
         // Checks if the end node is reached
         if (currentNode.x == endX && currentNode.y == endY) {
@@ -732,16 +729,16 @@ var Lines = (function () {
         currentNode.closed = true;
 
         // Get all adjecent nodes
-        var neighbors = getNeighbors(currentNode);
-        for (var i = 0; i < neighbors.length; i++) {
-          var neighbor = neighbors[i];
+        let neighbors = getNeighbors(currentNode);
+        for (let i = 0; i < neighbors.length; i++) {
+          let neighbor = neighbors[i];
 
           // Checks if adjecent node is closed or it's not walkable
           if (neighbor.closed || neighbor.obstacle != 0) {
             continue;
           }
 
-          var g = currentNode.g + 1,
+          let g = currentNode.g + 1,
             gIsBest = false;
 
           // Checks if node isn't opened yet
@@ -773,7 +770,7 @@ var Lines = (function () {
      * @return array
      */
     function reconstructPath(node) {
-      var path = [];
+      let path = [];
       while (node.parent) {
         path.push(node);
         node = node.parent;
@@ -789,7 +786,7 @@ var Lines = (function () {
      * @return array
      */
     function getNeighbors(node) {
-      var neighbors = [],
+      let neighbors = [],
         x = node.x,
         y = node.y;
 
@@ -816,7 +813,7 @@ var Lines = (function () {
      * @return array
      */
     function isOpened(node) {
-      for (var i = 0; i < openset.length; i++) {
+      for (let i = 0; i < openset.length; i++) {
         if (openset[i].x == node.x && openset[i].y == node.y) {
           return true;
         }
