@@ -125,6 +125,11 @@ var Lines = (function () {
 
     // send score on visibility change
     document.addEventListener("visibilitychange", () => {
+      console.log(forecast);
+      window.localStorage.setItem(
+        "color-lines-forecast",
+        JSON.stringify(forecast)
+      );
       window.highscores.setScore(score, false);
     });
 
@@ -559,16 +564,21 @@ var Lines = (function () {
    * Generates 3 forecast balls
    */
   function forecastBalls() {
-    forecast = [];
+    const isForecastSaved =
+      window.localStorage.getItem("color-lines-forecast") !== null;
+    forecast = isForecastSaved
+      ? JSON.parse(window.localStorage.getItem("color-lines-forecast"))
+      : [];
     forecastElement.innerHTML = "";
 
     for (var i = 0; i < 3; i++) {
       var ball = document.createElement("div");
-
-      forecast[i] = colors[rand(1, 7)];
+      if (!isForecastSaved) forecast[i] = colors[rand(1, 7)];
       ball.className = "ball " + forecast[i];
       forecastElement.appendChild(ball);
     }
+    console.log(forecast);
+    window.localStorage.removeItem("color-lines-forecast");
   }
 
   /**
