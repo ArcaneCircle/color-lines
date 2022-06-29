@@ -95,11 +95,33 @@ var Lines = (function () {
     // set onClick for skip button
     const skipButton = document.querySelector(".skip-button");
     skipButton.addEventListener("click", () => {
-      if (getCells(".empty").length === 0) {
-        gameOver();
-      } else {
-        addBalls();
-      }
+      addBalls(function (cells) {
+        var lineSets = [];
+
+        for (var i = 0; i < cells.length; i++) {
+          var lines = getLines(cells[i]);
+          if (lines) {
+            lineSets.push(lines);
+          }
+        }
+
+        // Checks if five-ball lines are found after adding balls
+        if (lineSets.length > 0) {
+          removeLines(lineSets);
+        } else {
+          // Checks if the grid is completely filled with balls
+          if (getCells(".empty").length === 0) {
+            // send score
+            window.highscores.setScore(score, false);
+            // create new game
+            grid = [];
+            score = 0;
+            scoreElement.innerHTML = score;
+            // Ends the game
+            return gameOver();
+          }
+        }
+      });
     });
 
     // send score on visibility change
