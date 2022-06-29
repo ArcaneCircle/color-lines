@@ -3,9 +3,9 @@
   margin: 0;
   padding: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -90,65 +90,44 @@ body {
 /* Ball colors */
 .red:before {
   background: rgb(255, 0, 0);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(255, 77, 77) 0%,
-    rgb(255, 0, 0) 100%
-  );
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .blue:before {
   background: rgb(0, 0, 255);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(77, 77, 255) 0%,
-    rgb(0, 0, 255) 100%
-  );
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .green:before {
-  background: rgb(0, 128, 0);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(77, 166, 77) 0%,
-    rgb(0, 128, 0) 100%
-  );
+  background: #4caf50;
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .yellow:before {
   background: rgb(255, 255, 0);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(255, 255, 77) 0%,
-    rgb(255, 255, 0) 100%
-  );
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .brown:before {
-  background: rgb(165, 42, 42);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(192, 106, 106) 0%,
-    rgb(165, 42, 42) 100%
-  );
+  background: #ff9800;
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .cyan:before {
   background: rgb(0, 255, 255);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(77, 255, 255) 0%,
-    rgb(0, 255, 255) 100%
-  );
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .magenta:before {
   background: rgb(255, 0, 255);
-  background: radial-gradient(
-    ellipse at center,
-    rgb(255, 77, 255) 0%,
-    rgb(255, 0, 255) 100%
-  );
+  box-shadow: inset -0.2rem -0.1rem 1rem #00000099,
+    0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 /* Ball effects */
