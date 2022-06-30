@@ -1,6 +1,6 @@
 # Color Lines
 
-Color Lines game for Delta Chat forked from [this project](https://github.com/arnisritins/Color-Lines)
+Color Lines (a.k.a. WinLines or WinLinez) game to compete with friends in groups on Delta Chat.
 
 ## Features
 
@@ -16,3 +16,10 @@ For development, run `pnpm dev`. There you could make use of `vite` speed and ho
 ## Build
 
 After running `pnpm build`, you'll get `dist/package.xdc` file, the actual game.
+
+
+## Credits
+
+Based on https://github.com/arnisritins/Color-Lines
+
+Sound effect generated with http://www.drpetter.se/project_sfxr.html

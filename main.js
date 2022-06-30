@@ -1,6 +1,10 @@
 import './styles.css'
-import './webxdc-scores.js'
 
+import './webxdc-scores.js'
+import {Howl} from 'howler';
+
+let sfxScore = new Howl({src: ["sounds/score.mp3"], volume: 0.5}),
+    sfxDie = new Howl({src: ["sounds/gameover.mp3"], volume: 0.4});
 let Lines = (function () {
   "use strict";
 
@@ -50,7 +54,7 @@ let Lines = (function () {
   const newGameButton = document.querySelector(".newgame-container");
   newGameButton.addEventListener("click", () => {
     // send score
-    window.highscores.setScore(score, false);
+    window.highscores.setScore(score);
     // create new game
     grid = [];
     score = 0;
@@ -77,14 +81,9 @@ let Lines = (function () {
       } else {
         // Checks if the grid is completely filled with balls
         if (getCells(".empty").length === 0) {
+          gameOver();
           grid = [];
-          score = 0;
-          scoreElement.innerHTML = score;
-          const game = document.querySelector("#game");
-          const overlay = document.querySelector(".overlay");
-          game.classList.add("blur");
-          overlay.classList.add("overlay--visible");
-          overlay.addEventListener("click", () => clickOverlay(true));
+          scoreElement.innerHTML = score = 0;
         }
       }
     });
@@ -96,7 +95,7 @@ let Lines = (function () {
       "color-lines-forecast",
       JSON.stringify(forecast)
     );
-    window.highscores.setScore(score, false);
+    window.highscores.setScore(score);
   });
 
   /**
@@ -408,10 +407,9 @@ let Lines = (function () {
   function removeLines(lineSets) {
     blocked = true;
 
+    let count = 0;
     for (let k in lineSets) {
-      let lines = lineSets[k],
-        count = 0,
-        scoreAdd = 0;
+      let lines = lineSets[k];
 
       for (let i = 0; i < lines.length; i++) {
         for (let j = 0; j < lines[i].length; j++) {
@@ -420,16 +418,15 @@ let Lines = (function () {
           let cell = getCell(x, y);
 
           cell.classList.add("fadeout");
+          if (grid[y][x] !== 0) count++;
           grid[y][x] = 0;
-          count++;
         }
       }
-
-      scoreAdd += count * count;
     }
 
     // Updates score
-    updateScore(scoreAdd);
+    sfxScore.play();
+    updateScore(count ** 2);
 
     // Sets timeout for animation
     setTimeout(function () {
@@ -604,7 +601,8 @@ let Lines = (function () {
   function gameOver() {
     blocked = true;
 
-    window.highscores.setScore(score, false);
+    sfxDie.play();
+    window.highscores.setScore(score);
 
     const game = document.querySelector("#game");
     const overlay = document.querySelector(".overlay");
@@ -619,7 +617,7 @@ let Lines = (function () {
     overlay.classList.remove("overlay--visible");
     game.classList.remove("blur");
     if (newgame) {
-      window.highscores.setScore(score, false);
+      window.highscores.setScore(score);
       // reset grid
       window.localStorage.removeItem("color-lines-grid");
       // reset score
