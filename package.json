@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "packageManager": "pnpm@7.1.7",
   "scripts": {
     "dev": "concurrently \"vite --host\" \"webxdc-dev run http://localhost:3000\"",
     "dev-xdc": "pnpm build && webxdc-dev run dist/app.xdc",
