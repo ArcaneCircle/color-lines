@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.2.3
     version: 2.2.3
   webxdc-scores:
-    specifier: git+https://github.com/webxdc/webxdc-scores.git
-    version: github.com/webxdc/webxdc-scores/296cc5fae815fa618219868328b3fa6d604515e9
+    specifier: github:webxdc/webxdc-scores
+    version: github.com/webxdc/webxdc-scores/7d54cebe0bf33b5ee0499e47199ad1bf99b9ac5a
 
 devDependencies:
   '@ffflorian/jszip-cli':
@@ -1558,8 +1558,8 @@ packages:
       yargs-parser: 21.0.1
     dev: true
 
-  github.com/webxdc/webxdc-scores/296cc5fae815fa618219868328b3fa6d604515e9:
-    resolution: {tarball: https://codeload.github.com/webxdc/webxdc-scores/tar.gz/296cc5fae815fa618219868328b3fa6d604515e9}
+  github.com/webxdc/webxdc-scores/7d54cebe0bf33b5ee0499e47199ad1bf99b9ac5a:
+    resolution: {tarball: https://codeload.github.com/webxdc/webxdc-scores/tar.gz/7d54cebe0bf33b5ee0499e47199ad1bf99b9ac5a}
     name: webxdc-scores
     version: 2.0.2
     dependencies:

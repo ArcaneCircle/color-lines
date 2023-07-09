@@ -13,7 +13,7 @@
     "webxdc-dev": "^0.11.0"
   },
   "dependencies": {
-    "webxdc-scores": "git+https://github.com/webxdc/webxdc-scores.git",
-    "howler": "^2.2.3"
+    "howler": "^2.2.3",
+    "webxdc-scores": "github:webxdc/webxdc-scores"
   }
 }
