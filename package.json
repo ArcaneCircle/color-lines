@@ -2,8 +2,8 @@
   "private": true,
   "packageManager": "pnpm@7.1.7",
   "scripts": {
-    "dev": "concurrently \"vite --host\" \"webxdc-dev run http://localhost:3000\"",
-    "dev-xdc": "pnpm build && webxdc-dev run dist/app.xdc",
+    "dev-mini": "vite --port 3000",
+    "dev": "concurrently \"pnpm dev-mini\" \"webxdc-dev run http://localhost:3000\"",
     "build": "vite build && jszip-cli -c jszip.config.json"
   },
   "devDependencies": {
@@ -13,6 +13,7 @@
     "webxdc-dev": "^0.11.0"
   },
   "dependencies": {
+    "webxdc-scores": "git+https://github.com/webxdc/webxdc-scores.git",
     "howler": "^2.2.3"
   }
 }

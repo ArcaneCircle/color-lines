@@ -1,6 +1,6 @@
 import './styles.css'
 
-import './webxdc-scores.js'
+import 'webxdc-scores';
 import {Howl} from 'howler';
 
 let sfxScore = new Howl({src: ["sounds/score.mp3"], volume: 0.5}),
