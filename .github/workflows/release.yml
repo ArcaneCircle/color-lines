@@ -9,22 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: pnpm
-
-      - name: Install
-        run: pnpm i
-
-      - name: Build
-        run: pnpm run build
+      - uses: actions/checkout@v3
+      - run: npm install -g pnpm
+      - run: pnpm i
+      - run: pnpm check
+      - run: pnpm build
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -34,4 +23,4 @@ jobs:
             Auto-generated release
           prerelease: ${{ contains(github.event.ref, '-beta') }}
           fail_on_unmatched_files: true
-          files: dist/*.xdc
+          files: ./dist-xdc/*.xdc
