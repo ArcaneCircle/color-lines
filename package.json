@@ -1,19 +1,22 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.1.7",
+  "type": "module",
   "scripts": {
-    "dev-mini": "vite --port 3000",
-    "dev": "concurrently \"pnpm dev-mini\" \"webxdc-dev run http://localhost:3000\"",
-    "build": "vite build && jszip-cli -c jszip.config.json"
+    "start": "vite --port 3000",
+    "build": "vite build",
+    "emulator": "concurrently \"npm run start\" \"webxdc-dev run http://localhost:3000\"",
+    "fix": "prettier --write .",
+    "check": "prettier --check ."
   },
   "devDependencies": {
-    "@ffflorian/jszip-cli": "^3.1.6",
-    "concurrently": "^7.2.2",
-    "vite": "^2.9.12",
-    "webxdc-dev": "^0.11.0"
+    "concurrently": "^9.0.1",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.10",
+    "webxdc-dev": "^0.17.0",
+    "webxdc-vite-plugins": "github:webxdc/webxdc-vite-plugins"
   },
   "dependencies": {
     "howler": "^2.2.3",
-    "webxdc-scores": "github:webxdc/webxdc-scores"
+    "webxdc-scores": "github:webxdc/webxdc-scores#v4.0.1"
   }
 }
