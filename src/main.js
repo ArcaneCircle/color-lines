@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import "webxdc-scores";
+import "@webxdc/highscores";
 import { Howl } from "howler";
 import { Astar } from "./astar.js";
 import { storage } from "./storage.js";

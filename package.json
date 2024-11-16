@@ -12,11 +12,11 @@
     "concurrently": "^9.0.1",
     "prettier": "^3.3.3",
     "vite": "^5.4.10",
-    "webxdc-dev": "^0.17.0",
-    "webxdc-vite-plugins": "github:webxdc/webxdc-vite-plugins"
+    "@webxdc/webxdc-dev": "latest",
+    "@webxdc/vite-plugins": "latest"
   },
   "dependencies": {
-    "howler": "^2.2.3",
-    "webxdc-scores": "github:webxdc/webxdc-scores#v4.0.1"
+    "@webxdc/highscores": "^5.2.0",
+    "howler": "^2.2.3"
   }
 }

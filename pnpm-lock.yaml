@@ -8,13 +8,19 @@ importers:
 
   .:
     dependencies:
+      '@webxdc/highscores':
+        specifier: ^5.2.0
+        version: 5.2.0
       howler:
         specifier: ^2.2.3
         version: 2.2.3
-      webxdc-scores:
-        specifier: github:webxdc/webxdc-scores#v4.0.1
-        version: https://codeload.github.com/webxdc/webxdc-scores/tar.gz/8c0cd771e5f658669aa816d67cb9ca23540545ad
     devDependencies:
+      '@webxdc/vite-plugins':
+        specifier: latest
+        version: 1.0.0(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
+      '@webxdc/webxdc-dev':
+        specifier: latest
+        version: 0.18.0
       concurrently:
         specifier: ^9.0.1
         version: 9.0.1
@@ -24,12 +30,6 @@ importers:
       vite:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@18.0.0)(terser@5.36.0)
-      webxdc-dev:
-        specifier: ^0.17.0
-        version: 0.17.0
-      webxdc-vite-plugins:
-        specifier: github:webxdc/webxdc-vite-plugins
-        version: https://codeload.github.com/webxdc/webxdc-vite-plugins/tar.gz/76b85d502e7da9eb3cde4a347aac0ce42f211447(terser@5.36.0)(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
 
 packages:
 
@@ -826,6 +826,16 @@ packages:
       terser: ^5.4.0
       vite: ^5.0.0
 
+  '@webxdc/highscores@5.2.0':
+    resolution: {integrity: sha512-Xh8HICjQuyNcZ4RdalycXH7LR+GjfC9iQbJf2xvWxVJHYP5B+ywMkspE9875GYaRIMZM40Mks6UrifxzfmvooA==}
+
+  '@webxdc/vite-plugins@1.0.0':
+    resolution: {integrity: sha512-mR3y3SlCgvohSM5rb3ml90IA3lUqBzn0fwkXERiR3P/9x9y3lWsHqlrFWf5qSplNF4IKZ/KZEMIB1qyQLl7yLA==}
+
+  '@webxdc/webxdc-dev@0.18.0':
+    resolution: {integrity: sha512-K3tVvZDYJ5D+1xNReHM5k/7RpvYorXXiNMizgcz32yNfy/7FdHV8gC8O9IIycjXNYXHeCWHUgNCX670j/htuGA==}
+    hasBin: true
+
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
     engines: {node: '>= 0.6'}
@@ -1003,8 +1013,8 @@ packages:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
     engines: {node: '>= 0.8'}
 
-  eruda@3.4.0:
-    resolution: {integrity: sha512-MSPJUwdKX8gJuWXzlKN0YcZUm8+XAMtntW+tmnvEpb1hUVQRxMiB/lxrqkuOBQ/SQJRXpIP1E0cADsRZMDjpXg==}
+  eruda@3.4.1:
+    resolution: {integrity: sha512-RmaO5yD97URY/9Q0lye3cmmNPoXNKreeePIw7c/zllbscR92CjGFZFuQ70+0fLIvLcKW3Xha8DS8NFhmeNbEBQ==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -1301,9 +1311,6 @@ packages:
   path-to-regexp@0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
 
-  picocolors@1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -1381,9 +1388,6 @@ packages:
     resolution: {integrity: sha512-HBW896xR5HGmoksbi3JBDtmVzWiPAYqp7wip50hjQ67JbDz61nyoMPdqu1DvVW9asYb2M65Z20ZHsyJCMqMyDg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
-
-  rxjs@7.5.5:
-    resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
 
   rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
@@ -1597,20 +1601,6 @@ packages:
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
-  webxdc-dev@0.17.0:
-    resolution: {integrity: sha512-+NZHjIadGNrNfTjhaAcUUPxDwtaTEZ0ULnnz+Pl/v/3vAYs+fOOhjMaxKAI0YYf4oxgLVob0F5yjMI/tRr4SlQ==}
-    hasBin: true
-
-  webxdc-scores@https://codeload.github.com/webxdc/webxdc-scores/tar.gz/8c0cd771e5f658669aa816d67cb9ca23540545ad:
-    resolution: {tarball: https://codeload.github.com/webxdc/webxdc-scores/tar.gz/8c0cd771e5f658669aa816d67cb9ca23540545ad}
-    version: 4.0.1
-
-  webxdc-vite-plugins@https://codeload.github.com/webxdc/webxdc-vite-plugins/tar.gz/76b85d502e7da9eb3cde4a347aac0ce42f211447:
-    resolution: {tarball: https://codeload.github.com/webxdc/webxdc-vite-plugins/tar.gz/76b85d502e7da9eb3cde4a347aac0ce42f211447}
-    version: 0.3.0
-    peerDependencies:
-      vite: ^5.0.0
-
   whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
@@ -1668,7 +1658,7 @@ snapshots:
     dependencies:
       '@babel/helper-validator-identifier': 7.25.9
       js-tokens: 4.0.0
-      picocolors: 1.0.0
+      picocolors: 1.1.1
 
   '@babel/compat-data@7.26.2': {}
 
@@ -2522,6 +2512,47 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@webxdc/highscores@5.2.0':
+    dependencies:
+      jssha: 3.3.1
+
+  '@webxdc/vite-plugins@1.0.0(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))':
+    dependencies:
+      '@vitejs/plugin-legacy': 5.4.3(terser@5.36.0)(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
+      eruda: 3.4.1
+      terser: 5.36.0
+      vite-plugin-zip-pack: 1.2.4(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
+    transitivePeerDependencies:
+      - supports-color
+      - vite
+
+  '@webxdc/webxdc-dev@0.18.0':
+    dependencies:
+      '@hope-ui/solid': 0.6.2(@stitches/core@1.2.8)(solid-js@1.5.9)(solid-transition-group@0.0.10(solid-js@1.5.9))
+      '@stitches/core': 1.2.8
+      adm-zip: 0.5.9
+      body-parser: 1.20.0
+      commander: 9.3.0
+      express: 4.18.1
+      express-ws: 5.0.2(express@4.18.1)
+      http-proxy-middleware: 2.0.6
+      node-fetch: 2.6.7
+      open: 8.4.0
+      solid-app-router: 0.4.1(solid-js@1.5.9)
+      solid-icons: 0.4.13(solid-js@1.5.9)
+      solid-js: 1.5.9
+      solid-transition-group: 0.0.10(solid-js@1.5.9)
+      toml: 3.0.0
+      wait-on: 6.0.1
+      ws: 8.8.0
+    transitivePeerDependencies:
+      - '@types/express'
+      - bufferutil
+      - debug
+      - encoding
+      - supports-color
+      - utf-8-validate
+
   accepts@1.3.8:
     dependencies:
       mime-types: 2.1.35
@@ -2690,7 +2721,7 @@ snapshots:
 
   encodeurl@1.0.2: {}
 
-  eruda@3.4.0: {}
+  eruda@3.4.1: {}
 
   esbuild@0.21.5:
     optionalDependencies:
@@ -2985,8 +3016,6 @@ snapshots:
 
   path-to-regexp@0.1.7: {}
 
-  picocolors@1.0.0: {}
-
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -3089,10 +3118,6 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.24.3
       '@rollup/rollup-win32-x64-msvc': 4.24.3
       fsevents: 2.3.3
-
-  rxjs@7.5.5:
-    dependencies:
-      tslib: 2.4.0
 
   rxjs@7.8.1:
     dependencies:
@@ -3274,52 +3299,11 @@ snapshots:
       joi: 17.6.0
       lodash: 4.17.21
       minimist: 1.2.6
-      rxjs: 7.5.5
+      rxjs: 7.8.1
     transitivePeerDependencies:
       - debug
 
   webidl-conversions@3.0.1: {}
-
-  webxdc-dev@0.17.0:
-    dependencies:
-      '@hope-ui/solid': 0.6.2(@stitches/core@1.2.8)(solid-js@1.5.9)(solid-transition-group@0.0.10(solid-js@1.5.9))
-      '@stitches/core': 1.2.8
-      adm-zip: 0.5.9
-      body-parser: 1.20.0
-      commander: 9.3.0
-      express: 4.18.1
-      express-ws: 5.0.2(express@4.18.1)
-      http-proxy-middleware: 2.0.6
-      node-fetch: 2.6.7
-      open: 8.4.0
-      solid-app-router: 0.4.1(solid-js@1.5.9)
-      solid-icons: 0.4.13(solid-js@1.5.9)
-      solid-js: 1.5.9
-      solid-transition-group: 0.0.10(solid-js@1.5.9)
-      toml: 3.0.0
-      wait-on: 6.0.1
-      ws: 8.8.0
-    transitivePeerDependencies:
-      - '@types/express'
-      - bufferutil
-      - debug
-      - encoding
-      - supports-color
-      - utf-8-validate
-
-  webxdc-scores@https://codeload.github.com/webxdc/webxdc-scores/tar.gz/8c0cd771e5f658669aa816d67cb9ca23540545ad:
-    dependencies:
-      jssha: 3.3.1
-
-  webxdc-vite-plugins@https://codeload.github.com/webxdc/webxdc-vite-plugins/tar.gz/76b85d502e7da9eb3cde4a347aac0ce42f211447(terser@5.36.0)(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0)):
-    dependencies:
-      '@vitejs/plugin-legacy': 5.4.3(terser@5.36.0)(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
-      eruda: 3.4.0
-      vite: 5.4.10(@types/node@18.0.0)(terser@5.36.0)
-      vite-plugin-zip-pack: 1.2.4(vite@5.4.10(@types/node@18.0.0)(terser@5.36.0))
-    transitivePeerDependencies:
-      - supports-color
-      - terser
 
   whatwg-url@5.0.0:
     dependencies:
