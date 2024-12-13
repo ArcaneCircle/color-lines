@@ -3,20 +3,17 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 3000",
-    "build": "vite build",
-    "emulator": "concurrently \"npm run start\" \"webxdc-dev run http://localhost:3000\"",
     "fix": "prettier --write .",
-    "check": "prettier --check ."
+    "check": "prettier --check .",
+    "build": "vite build"
   },
   "devDependencies": {
-    "concurrently": "^9.0.1",
-    "prettier": "^3.3.3",
-    "vite": "^5.4.10",
-    "@webxdc/webxdc-dev": "latest",
-    "@webxdc/vite-plugins": "latest"
+    "@webxdc/vite-plugins": "latest",
+    "prettier": "latest",
+    "vite": "latest"
   },
   "dependencies": {
-    "@webxdc/highscores": "^5.2.0",
+    "@webxdc/highscores": "^5.3.0",
     "howler": "^2.2.3"
   }
 }
